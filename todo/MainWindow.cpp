@@ -51,7 +51,8 @@ void MainWindow::taskStatusChanged(Task *) {
 void MainWindow::updateStatus() {
     int doneCount = 0;
     for (auto task : mTasks) {
-        doneCount += task->isCompleted();
+        if (task->isCompleted())
+            doneCount++;
     }
     int left = mTasks.size() - doneCount;
     ui->statusLabel->setText(QString("Status %1 todo / %2 completed")
